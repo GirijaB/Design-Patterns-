@@ -1,0 +1,32 @@
+# Use an official Ubuntu as a parent image
+FROM ubuntu:20.04
+
+# Update the package lists
+RUN apt-get update && apt-get -y upgrade
+
+# Install iproute2 and net-tools
+RUN apt-get install -y iproute2 net-tools
+
+# Install build essentials and g++ compiler
+RUN apt-get update && apt-get install -y build-essential g++
+
+
+# Update the package list and install necessary dependencies
+RUN apt-get update && \
+    apt-get install -y \
+    qt5-default \
+    qtcreator \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory
+WORKDIR /app
+
+# Copy your application source code and files to /app ()
+# COPY WeatherRadar.cpp  /app/WeatherRadar.cpp
+
+# Build and run your Qt application (if needed)
+# CMD ["qmake", "your_project.pro"]
+# CMD ["make"]
+# CMD ["./your_executable"]
+
+
